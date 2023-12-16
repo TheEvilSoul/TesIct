@@ -43,7 +43,7 @@ fun toggleNavBar(drawerState: DrawerState, scope: CoroutineScope) {
     }
 }
 @Composable
-fun Drawer(drawerState: DrawerState, scope: CoroutineScope, items: List<MenuItem>, modifier: Modifier = Modifier, content: (@Composable () -> Unit)?={}, onItemClick: (MenuItem) -> Unit?={}) {
+fun Drawer(drawerState: DrawerState, scope: CoroutineScope, items: List<MenuItem>, modifier: Modifier = Modifier, content: (@Composable () -> Unit)?={}, onItemClick: (MenuItem) -> Unit) {
     ModalNavigationDrawer(
         drawerState = drawerState,
         gesturesEnabled = true,

@@ -23,7 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.AppointmentsActivity">
+        </activity>
+        <activity android:name=".activity.DevicesActivity">
+        </activity>
         <activity android:name=".activity.HomeActivity">
+        </activity>
+        <activity android:name=".activity.InvoicesActivity">
+        </activity>
+        <activity android:name=".activity.WorkOrdersActivity">
         </activity>
     </application>
 

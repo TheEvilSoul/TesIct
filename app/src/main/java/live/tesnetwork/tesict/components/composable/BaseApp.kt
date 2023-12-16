@@ -21,13 +21,18 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
+import live.tesnetwork.tesict.IntentHelper
 import live.tesnetwork.tesict.R
 import live.tesnetwork.tesict.components.data.MenuItem
 import live.tesnetwork.tesict.components.helper.createIcon
 import live.tesnetwork.tesict.ui.theme.TesICTTheme
 
 @Composable
-fun baseApp(modifier: Modifier = Modifier, content: (@Composable () -> Unit)?={}) {
+fun baseApp(
+    intentHelper: IntentHelper?,
+    modifier: Modifier = Modifier,
+    content: (@Composable () -> Unit)? = {}
+) {
     TesICTTheme {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scrollBehavior =
@@ -38,7 +43,10 @@ fun baseApp(modifier: Modifier = Modifier, content: (@Composable () -> Unit)?={}
             color = MaterialTheme.colorScheme.background
         ) {
             val items: List<MenuItem> = listOf(
-                MenuItem("Home", { createIcon(Icons.Default.Home) }, "Go to home screen"),
+                MenuItem(
+                    "Home",
+                    { createIcon(Icons.Default.Home) },
+                    "Go to home screen"),
                 MenuItem(
                     "Appointments",
                     { createIcon(Icons.Default.DateRange) },
@@ -60,7 +68,15 @@ fun baseApp(modifier: Modifier = Modifier, content: (@Composable () -> Unit)?={}
                     "Go to devices screen"
                 ),
             )
-            Drawer(drawerState, scope, items, content = {
+            Drawer(drawerState, scope, items, onItemClick = { it ->
+                if (intentHelper != null) {
+                    if (it.id == "Home") intentHelper.gotoHome()
+                    else if (it.id == "Appointments") intentHelper.gotoAppointments()
+                    else if (it.id == "Invoices") intentHelper.gotoInvoices()
+                    else if (it.id == "WorkOrders") intentHelper.gotoWorkOrders()
+                    else if (it.id == "Devices") intentHelper.gotoDevices()
+                }
+            }, content = {
                 Scaffold(
                     modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
                     topBar = {
@@ -90,5 +106,5 @@ fun baseApp(modifier: Modifier = Modifier, content: (@Composable () -> Unit)?={}
 @Preview(showBackground = true)
 @Composable
 fun baeAppPreview() {
-    baseApp()
+    baseApp(null)
 }

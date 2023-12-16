@@ -8,20 +8,20 @@ import androidx.compose.material3.Text
 import live.tesnetwork.tesict.IntentHelper
 import live.tesnetwork.tesict.components.composable.baseApp
 
-class HomeActivity : ComponentActivity(), IntentHelper {
+class DevicesActivity : ComponentActivity(), IntentHelper {
     private var bundle: Bundle? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bundle=savedInstanceState
         setContent {
             baseApp(this, content = {
-                Text(text = "Home Screen")
+                Text(text = "Device Screen")
             })
         }
     }
 
     override fun getContext(): Context {
-        return this;
+        return this
     }
 
     override fun getBundle(): Bundle? {
