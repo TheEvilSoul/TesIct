@@ -31,6 +31,8 @@
         </activity>
         <activity android:name=".activity.InvoicesActivity">
         </activity>
+        <activity android:name=".activity.InvoiceActivity">
+        </activity>
         <activity android:name=".activity.WorkOrdersActivity">
         </activity>
         <activity android:name=".activity.WorkOrderActivity">

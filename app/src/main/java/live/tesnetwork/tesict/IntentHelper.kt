@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat.startActivity
 import live.tesnetwork.tesict.activity.AppointmentsActivity
 import live.tesnetwork.tesict.activity.DevicesActivity
 import live.tesnetwork.tesict.activity.HomeActivity
+import live.tesnetwork.tesict.activity.InvoiceActivity
 import live.tesnetwork.tesict.activity.InvoicesActivity
 import live.tesnetwork.tesict.activity.WorkOrderActivity
 import live.tesnetwork.tesict.activity.WorkOrdersActivity
@@ -62,6 +63,16 @@ interface IntentHelper {
 
     fun gotoWorkOrder(workOrderId: Int) {
         startIntent(getWorkOrderIntent(workOrderId))
+    }
+
+    fun gotoInvoice(invoiceId: Int) {
+        startIntent(getInvoiceIntent(invoiceId))
+    }
+
+    fun getInvoiceIntent(invoiceId: Int): Intent {
+        val intent = Intent(getContext(), InvoiceActivity::class.java)
+        intent.putExtra("invoiceId", invoiceId)
+        return intent
     }
 
     fun startIntent(intent: Intent) {

@@ -7,7 +7,7 @@ data class InvoiceData (
     val invoiceId: Int,
     val userId: String,
     val price: Float,
-    val orderId: Int,
+    val workOrderId: Int,
     val payedStatus: Boolean,
     val dueDate: Date
 ) {
@@ -16,7 +16,7 @@ data class InvoiceData (
             .put("invoiceId", invoiceId)
             .put("userId", userId)
             .put("price", price)
-            .put("orderId", orderId)
+            .put("orderId", workOrderId)
             .put("payedStatus", payedStatus)
             .put("dueDate", dueDate.time)
     }
@@ -27,7 +27,7 @@ data class InvoiceData (
                 invoiceId = json.getInt("invoiceId"),
                 userId = json.getString("userId"),
                 price = json.getDouble("price").toFloat(),
-                orderId = json.getInt("orderId"),
+                workOrderId = json.getInt("orderId"),
                 payedStatus = json.getBoolean("payedStatus"),
                 dueDate = Date(json.getLong("dueDate"))
             )
