@@ -35,13 +35,16 @@ import kotlinx.coroutines.CoroutineScope
 import live.tesnetwork.tesict.IntentHelper
 import live.tesnetwork.tesict.R
 import live.tesnetwork.tesict.components.data.MenuItem
+import live.tesnetwork.tesict.components.data.User
 import live.tesnetwork.tesict.components.data.WorkOrderData
+import live.tesnetwork.tesict.components.data.exampleUser
 import live.tesnetwork.tesict.components.helper.createIcon
 import live.tesnetwork.tesict.ui.theme.TesICTTheme
 import java.text.SimpleDateFormat
 
 @Composable
 fun baseApp(
+    user: User= exampleUser(),
     intentHelper: IntentHelper?,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
@@ -68,6 +71,7 @@ fun baseApp(
                     }
                 }, content = {
                     createBaseAppBody(
+                        user=user,
                         modifier = modifier,
                         onNavigationIconClick = {
                             toggleNavBar(
@@ -125,6 +129,7 @@ fun createBaseAppDrawer(
 
 @Composable
 fun createBaseAppBody(
+    user: User,
     modifier: Modifier = Modifier,
     onNavigationIconClick: () -> Unit = {},
     content: @Composable () -> Unit
@@ -132,7 +137,7 @@ fun createBaseAppBody(
     Column(
         modifier = modifier,
     ) {
-        AppBar(onNavigationIconClick = onNavigationIconClick)
+        AppBar(user, onNavigationIconClick = onNavigationIconClick)
         Box(modifier = Modifier.fillMaxSize()) {
             if (content != null) {
                 content()

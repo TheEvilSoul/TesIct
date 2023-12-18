@@ -31,10 +31,13 @@ import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
+import live.tesnetwork.tesict.components.data.User
+import live.tesnetwork.tesict.components.data.exampleUser
 import live.tesnetwork.tesict.ui.theme.TesICTTheme
 
 @Composable
 fun AppBar(
+    user: User,
     onNavigationIconClick: () -> Unit = {}
 ) {
     val topBarColors = TopAppBarDefaults.smallTopAppBarColors(
@@ -58,7 +61,7 @@ fun AppBar(
         },
         actions = {
             Box(modifier = Modifier.padding(16.dp)) {
-                profile("Jordy", "https://lh3.googleusercontent.com/a-/ALV-UjX-UDAOk2czaIvFBmYLyCj4MhEoTbcZ8zctbnAySKyuAQo=s300")
+                profile(user)
             }
         }
     )
@@ -67,19 +70,19 @@ fun AppBar(
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun profile(username: String, imageUrl: String, modifier: Modifier = Modifier) {
+fun profile(user : User, modifier: Modifier = Modifier) {
     Row (
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ){
         Text(
-            text = username,
+            text = user.name,
             textAlign = TextAlign.Center,
             modifier=modifier.padding(end = 10.dp)
         )
         Image(
             painter = rememberImagePainter(
-                data = imageUrl,
+                data = user.profileImageUrl,
                 builder = {
                     transformations(CircleCropTransformation())
                 }
@@ -96,7 +99,7 @@ fun appBarPreview() {
     TesICTTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            topBar = { AppBar(onNavigationIconClick = { }) }
+            topBar = { AppBar(exampleUser(), onNavigationIconClick = { }) }
         ) { paddingValues ->
             Surface(
                 color = MaterialTheme.colorScheme.background, modifier = Modifier

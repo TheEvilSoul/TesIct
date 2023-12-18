@@ -105,3 +105,10 @@ fun exampleWorkOrderData(): List<WorkOrderData> {
         )
     )
 }
+
+fun exampleUser(): User {
+    return User(
+        "Jordy",
+        "https://lh3.googleusercontent.com/a-/ALV-UjX-UDAOk2czaIvFBmYLyCj4MhEoTbcZ8zctbnAySKyuAQo=s300"
+    )
+}
