@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,11 +20,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import live.tesnetwork.tesict.IntentHelper
 import live.tesnetwork.tesict.components.data.WorkOrderData
 import live.tesnetwork.tesict.components.data.exampleWorkOrderData
+import live.tesnetwork.tesict.components.data.fakeIntentHelperClass
 import live.tesnetwork.tesict.components.helper.createLabel
 import live.tesnetwork.tesict.ui.theme.TesICTTheme
-import java.text.SimpleDateFormat
 
 @Composable
 fun WorkOrderSmallCard(
@@ -68,8 +68,8 @@ fun WorkOrderSmallCard(
 @Composable
 fun WorkOrderCard(
     workOrderData: WorkOrderData,
-    modifier: Modifier = Modifier,
-    onClick: (WorkOrderData) -> Unit = {}
+    intentHelper: IntentHelper=fakeIntentHelperClass(),
+    modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier
@@ -79,7 +79,6 @@ fun WorkOrderCard(
                 color = MaterialTheme.colorScheme.surface,
                 shape = RoundedCornerShape(10.dp)
             )
-            .clickable { onClick(workOrderData) }
     ) {
         Column(modifier = modifier.padding(16.dp)) {
             Row(
@@ -118,6 +117,7 @@ fun WorkOrderStatusLabel(status: Int, modifier: Modifier = Modifier) {
 
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun workOrderSmallCardPreview() {
