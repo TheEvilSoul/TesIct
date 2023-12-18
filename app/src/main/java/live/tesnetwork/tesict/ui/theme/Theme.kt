@@ -2,6 +2,8 @@ package live.tesnetwork.tesict.ui.theme
 
 import android.app.Activity
 import android.os.Build
+import android.view.View
+import android.view.WindowManager
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -32,10 +34,9 @@ private val DarkColorScheme = darkColorScheme(
     onTertiaryContainer = Color(0xFFFFFFFF),
     background = Color.Black,
     onBackground = Color(0xFFFFFFFF),
-    //surface = Color(0xFF1E1E1E),
     surface = Color(0xFF191C24),
     onSurface = Color(0xFFFFFFFF),
-    surfaceVariant = Color(0xFFFFFFFF),
+    surfaceVariant = Color(0xFF272A32),
     onSurfaceVariant = Color(0xFFFFFFFF),
     surfaceTint = Color(0xFFFFFFFF),
     inverseSurface = Color(0xFFFFFFFF),
@@ -84,8 +85,8 @@ fun TesICTTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.background.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            window.statusBarColor = colorScheme.surface.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
 

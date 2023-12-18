@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".activity.WorkOrdersActivity">
         </activity>
+        <activity android:name=".activity.WorkOrderActivity">
+        </activity>
     </application>
 
 </manifest>

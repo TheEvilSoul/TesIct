@@ -8,6 +8,7 @@ import live.tesnetwork.tesict.activity.AppointmentsActivity
 import live.tesnetwork.tesict.activity.DevicesActivity
 import live.tesnetwork.tesict.activity.HomeActivity
 import live.tesnetwork.tesict.activity.InvoicesActivity
+import live.tesnetwork.tesict.activity.WorkOrderActivity
 import live.tesnetwork.tesict.activity.WorkOrdersActivity
 
 interface IntentHelper {
@@ -51,6 +52,16 @@ interface IntentHelper {
 
     fun gotoWorkOrders() {
         startIntent(getWorkOrdersIntent())
+    }
+
+    fun getWorkOrderIntent(workOrderId: Int): Intent {
+        val intent = Intent(getContext(), WorkOrderActivity::class.java)
+        intent.putExtra("workOrderId", workOrderId)
+        return intent
+    }
+
+    fun gotoWorkOrder(workOrderId: Int) {
+        startIntent(getWorkOrderIntent(workOrderId))
     }
 
     fun startIntent(intent: Intent) {
