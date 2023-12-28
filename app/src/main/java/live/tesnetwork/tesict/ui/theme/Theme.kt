@@ -19,7 +19,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    //this color scheme still needs to be fixst.
+    // TODO: this color scheme still needs to be fixst.
     primary = Color(0xFF303F9F),
     onPrimary = Color(0xFFFFFFFF),
     primaryContainer = Color(0xFF303F9F),
@@ -51,7 +51,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    //this color scheme still needs to be fixst
+    //TODO: this color scheme still needs to be fixst
     primary = Color(0xFF303F9F),
     onPrimary = Color(0xFF000000),
     primaryContainer = Color(0xFF303F9F),
