@@ -21,10 +21,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import live.tesnetwork.tesict.IntentHelper
-import live.tesnetwork.tesict.components.data.WorkOrderData
-import live.tesnetwork.tesict.components.data.exampleWorkOrderData
-import live.tesnetwork.tesict.components.data.fakeIntentHelperClass
+import live.tesnetwork.tesict.components.data.ExampleData
+import live.tesnetwork.tesict.components.data.common.WorkOrderData
+import live.tesnetwork.tesict.components.data.helper.FakeIntentHelperClass
 import live.tesnetwork.tesict.components.helper.createLabel
+import live.tesnetwork.tesict.logic.helper.getClient
+import live.tesnetwork.tesict.logic.helper.getDevice
 import live.tesnetwork.tesict.ui.theme.TesICTTheme
 
 @Composable
@@ -50,7 +52,7 @@ fun WorkOrderSmallCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "DeviceName: %s".format(workOrderData.deviceId),
+                    text = "DeviceName: %s".format(workOrderData.deviceId.getDevice().deviceName),
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 WorkOrderStatusLabel(workOrderData.status, modifier = Modifier.width(125.dp))
@@ -68,7 +70,7 @@ fun WorkOrderSmallCard(
 @Composable
 fun WorkOrderCard(
     workOrderData: WorkOrderData,
-    intentHelper: IntentHelper=fakeIntentHelperClass(),
+    intentHelper: IntentHelper= FakeIntentHelperClass(),
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -87,7 +89,7 @@ fun WorkOrderCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Name: %s".format(workOrderData.userId),
+                    text = "Name: %s".format(workOrderData.requestData.clientId.getClient().name),
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 WorkOrderStatusLabel(workOrderData.status, modifier = Modifier.width(125.dp))
@@ -99,7 +101,7 @@ fun WorkOrderCard(
                 color = MaterialTheme.colorScheme.onSurface
             )
             Text(
-                text = "Device: %s".format(workOrderData.deviceId),
+                text = "Device: %s".format(workOrderData.deviceId.getDevice().deviceName),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colorScheme.onSurface
@@ -121,7 +123,7 @@ fun WorkOrderStatusLabel(status: Int, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun workOrderSmallCardPreview() {
-    val data = exampleWorkOrderData()[0]
+    val data = ExampleData.getWorkOrder(0)
     TesICTTheme {
         Box(
             modifier = Modifier
@@ -136,7 +138,7 @@ fun workOrderSmallCardPreview() {
 @Preview(showBackground = true)
 @Composable
 fun workOrderCardPreview() {
-    val data = exampleWorkOrderData()[0]
+    val data = ExampleData.getWorkOrder(0)
     TesICTTheme {
         Box(
             modifier = Modifier

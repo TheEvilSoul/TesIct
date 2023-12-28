@@ -7,7 +7,6 @@ package live.tesnetwork.tesict.components.composable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -20,31 +19,26 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberDrawerState
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.CoroutineScope
 import live.tesnetwork.tesict.IntentHelper
 import live.tesnetwork.tesict.R
-import live.tesnetwork.tesict.components.data.MenuItem
-import live.tesnetwork.tesict.components.data.User
-import live.tesnetwork.tesict.components.data.WorkOrderData
-import live.tesnetwork.tesict.components.data.exampleUser
+import live.tesnetwork.tesict.components.data.ExampleData
+import live.tesnetwork.tesict.components.data.helper.MenuItem
+import live.tesnetwork.tesict.components.data.user.User
+import live.tesnetwork.tesict.components.data.common.WorkOrderData
 import live.tesnetwork.tesict.components.helper.createIcon
 import live.tesnetwork.tesict.ui.theme.TesICTTheme
 import java.text.SimpleDateFormat
 
 @Composable
 fun baseApp(
-    user: User= exampleUser(),
+    user: User = ExampleData.getClient(0).getAsUser(),
     intentHelper: IntentHelper?,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
@@ -149,107 +143,7 @@ fun createBaseAppBody(
 @Preview(showBackground = true)
 @Composable
 fun baseAppPreview() {
-    val testData = listOf(
-        WorkOrderData(
-            workOrderId = 1,
-            creationDate = SimpleDateFormat("yyyy-MM-dd").parse("2023-01-01"),
-            userId = "user123",
-            workerId = "worker456",
-            deviceId = 123,
-            description = "Example description",
-            title = "Example title",
-            status = 0,
-            invoiceId = 789
-        ),
-        WorkOrderData(
-            workOrderId = 2,
-            creationDate = SimpleDateFormat("yyyy-MM-dd").parse("2023-02-01"),
-            userId = "user456",
-            workerId = "worker789",
-            deviceId = 456,
-            description = "Another example description",
-            title = "Another example title that is longer",
-            status = 1,
-            invoiceId = 890
-        ),
-        WorkOrderData(
-            workOrderId = 3,
-            creationDate = SimpleDateFormat("yyyy-MM-dd").parse("2023-03-01"),
-            userId = "user789",
-            workerId = "worker012",
-            deviceId = 789,
-            description = "Yet another example description",
-            title = "Yet another example title",
-            status = 2,
-            invoiceId = 901
-        ),
-        WorkOrderData(
-            workOrderId = 4,
-            creationDate = SimpleDateFormat("yyyy-MM-dd").parse("2023-04-01"),
-            userId = "user789",
-            workerId = "worker012",
-            deviceId = 789,
-            description = "Example 4 description",
-            title = "Example 4 title",
-            status = 0,
-            invoiceId = 902
-        ),
-        WorkOrderData(
-            workOrderId = 5,
-            creationDate = SimpleDateFormat("yyyy-MM-dd").parse("2023-05-01"),
-            userId = "user123",
-            workerId = "worker456",
-            deviceId = 123,
-            description = "Example 5 description",
-            title = "Example 5 title",
-            status = 1,
-            invoiceId = 903
-        ),
-        WorkOrderData(
-            workOrderId = 6,
-            creationDate = SimpleDateFormat("yyyy-MM-dd").parse("2023-06-01"),
-            userId = "user456",
-            workerId = "worker789",
-            deviceId = 456,
-            description = "Example 6 description",
-            title = "Example 6 title",
-            status = 2,
-            invoiceId = 904
-        ),
-        WorkOrderData(
-            workOrderId = 4,
-            creationDate = SimpleDateFormat("yyyy-MM-dd").parse("2023-04-01"),
-            userId = "user789",
-            workerId = "worker012",
-            deviceId = 789,
-            description = "Example 4 description",
-            title = "Example 4 title",
-            status = 0,
-            invoiceId = 902
-        ),
-        WorkOrderData(
-            workOrderId = 5,
-            creationDate = SimpleDateFormat("yyyy-MM-dd").parse("2023-05-01"),
-            userId = "user123",
-            workerId = "worker456",
-            deviceId = 123,
-            description = "Example 5 description",
-            title = "Example 5 title",
-            status = 1,
-            invoiceId = 903
-        ),
-        WorkOrderData(
-            workOrderId = 6,
-            creationDate = SimpleDateFormat("yyyy-MM-dd").parse("2023-06-01"),
-            userId = "user456",
-            workerId = "worker789",
-            deviceId = 456,
-            description = "Example 6 description",
-            title = "Example 6 title",
-            status = 2,
-            invoiceId = 904
-        )
-    )
+    val testData = ExampleData.getWorkOrders()
     baseApp(intentHelper = null) {
         LazyColumn(
             modifier = Modifier

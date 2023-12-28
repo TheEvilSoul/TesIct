@@ -31,8 +31,8 @@ import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
-import live.tesnetwork.tesict.components.data.User
-import live.tesnetwork.tesict.components.data.exampleUser
+import live.tesnetwork.tesict.components.data.ExampleData
+import live.tesnetwork.tesict.components.data.user.User
 import live.tesnetwork.tesict.ui.theme.TesICTTheme
 
 @Composable
@@ -99,7 +99,7 @@ fun appBarPreview() {
     TesICTTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            topBar = { AppBar(exampleUser(), onNavigationIconClick = { }) }
+            topBar = { AppBar(ExampleData.getClient(0).getAsUser(), onNavigationIconClick = { }) }
         ) { paddingValues ->
             Surface(
                 color = MaterialTheme.colorScheme.background, modifier = Modifier

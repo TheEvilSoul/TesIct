@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import live.tesnetwork.tesict.R
-import live.tesnetwork.tesict.components.data.MenuItem
+import live.tesnetwork.tesict.components.data.helper.MenuItem
 import live.tesnetwork.tesict.components.helper.createIcon
 import live.tesnetwork.tesict.ui.theme.TesICTTheme
 

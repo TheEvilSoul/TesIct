@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 import live.tesnetwork.tesict.IntentHelper
 import live.tesnetwork.tesict.components.composable.WorkOrderCard
 import live.tesnetwork.tesict.components.composable.baseApp
-import live.tesnetwork.tesict.components.data.exampleWorkOrderData
+import live.tesnetwork.tesict.components.data.ExampleData
 
 class WorkOrderActivity : ComponentActivity(), IntentHelper {
     private var bundle: Bundle? = null
@@ -15,7 +15,7 @@ class WorkOrderActivity : ComponentActivity(), IntentHelper {
         super.onCreate(savedInstanceState)
         bundle = savedInstanceState
 
-        val testData = exampleWorkOrderData()[intent.getIntExtra("workOrderId", -1)]
+        val testData = ExampleData.getWorkOrder(intent.getIntExtra("workOrderId", -1))
 
         setContent {
             baseApp(intentHelper = this) {

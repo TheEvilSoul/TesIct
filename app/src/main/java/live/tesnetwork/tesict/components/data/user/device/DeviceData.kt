@@ -1,18 +1,18 @@
-package live.tesnetwork.tesict.components.data
+package live.tesnetwork.tesict.components.data.user.device
 
 import org.json.JSONObject
 
 data class DeviceData (
     val deviceId: Int,
     val deviceName: String,
-    val userId: String,
+    val clientId: Int,
     val deviceOs: Int
 ) {
     fun toJson(): JSONObject {
         return JSONObject()
             .put("deviceId", deviceId)
             .put("deviceName", deviceName)
-            .put("userId", userId)
+            .put("clientId", clientId)
             .put("deviceOs", deviceOs)
     }
 
@@ -21,7 +21,7 @@ data class DeviceData (
             return DeviceData(
                 deviceId = json.getInt("deviceId"),
                 deviceName = json.getString("deviceName"),
-                userId = json.getString("userId"),
+                clientId = json.getInt("clientId"),
                 deviceOs = json.getInt("deviceOs")
             )
         }

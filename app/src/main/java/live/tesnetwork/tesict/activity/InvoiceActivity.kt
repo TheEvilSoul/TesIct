@@ -5,11 +5,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import live.tesnetwork.tesict.IntentHelper
-import live.tesnetwork.tesict.components.composable.WorkOrderCard
 import live.tesnetwork.tesict.components.composable.baseApp
 import live.tesnetwork.tesict.components.composable.invoiceCard
-import live.tesnetwork.tesict.components.data.exampleInvoiceData
-import live.tesnetwork.tesict.components.data.exampleWorkOrderData
+import live.tesnetwork.tesict.components.data.ExampleData
 
 class InvoiceActivity : ComponentActivity(), IntentHelper {
     private var bundle: Bundle? = null
@@ -17,7 +15,7 @@ class InvoiceActivity : ComponentActivity(), IntentHelper {
         super.onCreate(savedInstanceState)
         bundle = savedInstanceState
 
-        val testData = exampleInvoiceData()[intent.getIntExtra("invoiceId", -1)]
+        val testData = ExampleData.getInvoice(intent.getIntExtra("invoiceId", -1))
 
         setContent {
             baseApp(intentHelper = this) {
